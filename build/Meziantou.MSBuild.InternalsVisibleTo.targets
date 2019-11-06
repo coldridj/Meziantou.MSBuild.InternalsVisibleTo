@@ -9,7 +9,7 @@
 
     <!-- Handle InternalsVisibleToSuffix -->
     <ItemGroup Condition="@(InternalsVisibleToSuffix->Count()) &gt; 0">
-      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo" Condition="$(AssemblyName.EndsWith(%(InternalsVisibleToSuffix.Identity))) == 'false'">
         <_Parameter1>$(AssemblyName)%(InternalsVisibleToSuffix.Identity)</_Parameter1>
       </AssemblyAttribute>
     </ItemGroup>
