@@ -4,7 +4,7 @@
 
 [![NuGet version](https://img.shields.io/nuget/v/Meziantou.MSBuild.InternalsVisibleTo.svg?logo=nuget)](https://www.nuget.org/packages/Meziantou.MSBuild.InternalsVisibleTo)
 
-Allow to declare 'InternalsVisibleTo' in the csproj file, rather than declaring them to an AssemblyInfo.cs file.
+Allow to declare `InternalsVisibleTo` in the csproj file, rather than declaring them to an `AssemblyInfo.cs` file.
 
 ## How to use
 
