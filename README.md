@@ -1,35 +1,29 @@
-# InternalsVisibleTo.MSBuild
+# Meziantou.MSBuild.InternalsVisibleTo
 
-[![NuGet version](https://img.shields.io/nuget/v/InternalsVisibleTo.MSBuild.svg?logo=nuget)](https://www.nuget.org/packages/InternalsVisibleTo.MSBuild)
+> The code is an adaptation of https://github.com/thomaslevesque/InternalsVisibleTo.MSBuild to fit my needs. It adds the notion of suffix and the default suffix.
 
-Enables declaring `InternalsVisibleTo` items in a .NET project file, rather than declaring them to an AssemblyInfo.cs file.
+[![NuGet version](https://img.shields.io/nuget/v/Meziantou.MSBuild.InternalsVisibleTo.svg?logo=nuget)](https://www.nuget.org/packages/Meziantou.MSBuild.InternalsVisibleTo)
+
+Allow to declare 'InternalsVisibleTo' in the csproj file, rather than declaring them to an AssemblyInfo.cs file.
 
 ## How to use
 
-1. Install the `InternalsVisibleTo.MSBuild` NuGet package.
-2. Edit your csproj file and add `<InternalsVisibleTo>` items in your project for each assembly that should have access
-to the internals of the current project:
+1. Install the `Meziantou.MSBuild.InternalsVisibleTo` NuGet package.
+2. Edit your csproj file:
 
 ```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  
   <ItemGroup>
-    <InternalsVisibleTo Include="$(AssemblyName).UnitTests" />
-    <InternalsVisibleTo Include="SomeOtherAssembly" />
-    <InternalsVisibleTo Include="StronglyNamedAssembly, PublicKey=0123....." />
+    <InternalsVisibleTo Include="CustomTest1" /> <!-- [assembly: InternalsVisibleTo("CustomTest1")] -->
+    <InternalsVisibleTo Include="CustomTest2, PublicKey=abc" /> <!-- [assembly: InternalsVisibleTo("CustomTest2, PublicKey=abc")] -->
+    <InternalsVisibleTo Include="$(AssemblyName).Custom" /> <!-- [assembly: InternalsVisibleTo("ClassLibrary1.Custom")] -->
+
+    <InternalsVisibleToSuffix Include=".Tests" /> <!-- [assembly: InternalsVisibleTo("ClassLibrary1.Tests")] -->
+    <InternalsVisibleToSuffix Include=".FunctionalTests" /> <!-- [assembly: InternalsVisibleTo("ClassLibrary1.FunctionalTests")] -->
   </ItemGroup>
+
+</Project>
 ```
 
 This will generate the appropriate `InternalsVisibleTo` attributes for your assembly.
-
-## Note
-
-In fact, it's already possible to declare `InternalsVisibleTo` attributes in the project file without this package, but the syntax is ugly and hard to remember:
-
-```xml
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>SomeOtherAssembly</_Parameter1>
-    </AssemblyAttribute>
-  <ItemGroup>
-```
-
-This package just makes things easier by transforming `<InternalsVisibleTo>` elements into appropriate `<AssemblyAttribute>` elements.

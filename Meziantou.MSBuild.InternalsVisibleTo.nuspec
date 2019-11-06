@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Meziantou.MSBuild.InternalsVisibleTo</id>
+        <version>1.0.0</version>
+        <description>Allow to declare 'InternalsVisibleTo' in the csproj file, rather than declaring them to an AssemblyInfo.cs file.</description>
+        <authors>meziantou</authors>
+        <projectUrl>https://github.com/meziantou/Meziantou.MSBuild.InternalsVisibleTo</projectUrl>
+        <license type="expression">MIT</license>
+        <developmentDependency>true</developmentDependency>
+        <tags>msbuild internalsvisibleto csproj vbproj</tags>
+        <repository type="git" url="https://github.com/meziantou/Meziantou.MSBuild.InternalsVisibleTo.git" />
+    </metadata>
+    <files>
+		<file src="**/*.props" target="" />
+        <file src="**/*.targets" target="" />
+    </files>
+</package>
