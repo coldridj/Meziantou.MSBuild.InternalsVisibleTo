@@ -1,5 +1,5 @@
 <Project>
-  <Target Name="AddInternalsVisibleTo" BeforeTargets="CoreCompile">
+  <Target Name="AddInternalsVisibleTo" BeforeTargets="BeforeCompile">
     <!-- Handle InternalsVisibleTo -->
     <ItemGroup Condition="'@(InternalsVisibleTo->Count())' &gt; 0">
       <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
